@@ -7,6 +7,7 @@ import webbrowser
 
 import PIL.Image
 
+import PyQt5
 from qtpy import QtCore
 from qtpy.QtCore import Qt
 from qtpy import QtGui
@@ -1536,8 +1537,11 @@ class MainWindow(QtWidgets.QMainWindow, WindowMixin):
         self.openNextImg(load=load)
 
     def scanAllImages(self, folderPath):
+        supported_files = QtGui.QImageReader.supportedImageFormats()
+        supported_files.append(PyQt5.QtCore.QByteArray(b'json'))
+
         extensions = ['.%s' % fmt.data().decode("ascii").lower()
-                      for fmt in QtGui.QImageReader.supportedImageFormats()]
+                      for fmt in supported_files]
         images = []
 
         for root, dirs, files in os.walk(folderPath):
