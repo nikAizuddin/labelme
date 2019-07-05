@@ -8,3 +8,6 @@
 *.py[cdo]
 
 .DS_Store
+
+.spyproject
+

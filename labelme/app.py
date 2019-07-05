@@ -1641,6 +1641,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def scanAllImages(self, folderPath):
         extensions = ['.%s' % fmt.data().decode("ascii").lower()
                       for fmt in QtGui.QImageReader.supportedImageFormats()]
+        extensions.append('.json')
         images = []
 
         for root, dirs, files in os.walk(folderPath):
